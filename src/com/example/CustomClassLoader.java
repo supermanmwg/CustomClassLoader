@@ -78,7 +78,7 @@ public class CustomClassLoader extends ClassLoader{
 		if(classFile.exists()) {
 			try {
 				byte[] raw = getBytes(classFilename);
-				clazz = defineClass(null, raw, 0, raw.length);
+				clazz = defineClass(name, raw, 0, raw.length);
 			}catch (IOException e) {
 				return null;
 			}
@@ -94,7 +94,7 @@ public class CustomClassLoader extends ClassLoader{
 	//定义一个主方法
 	public static void main(String[] args) throws Exception {
 		
-		Class<?> clazz = new CustomClassLoader().loadClass("com.example.haha");
+		Class<?> clazz = new CustomClassLoader().findClass("com.example.haha");
 		Method method = clazz.getDeclaredMethod("sayHaha");
 		method.invoke(null);
 	}
